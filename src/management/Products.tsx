@@ -50,11 +50,12 @@ const Products = () => {
                 return (
                   <tr key={p.id}>
                     <td>{p.id}</td>
-                    <td><img src={p.image} height="180"/></td>
+                    <td><img src={p.image} height="180" width="280"/></td>
                     <td>{p.title}</td>
                     <td>{p.likes}</td>
                     <td>
                       <div className="btn-group mr-2">
+                        <Link to={`/management/products/${p.id}/edit`} className="btn btn-sm-outline-secondary">Edit</Link>
                         <a href="#" className="btn btn-sm-outline-secondary"
                           onClick={() => del(p.id)}>Delete</a>
                       </div>
