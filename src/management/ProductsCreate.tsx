@@ -1,23 +1,47 @@
-import React from 'react';
+import React, {SyntheticEvent, useState} from 'react';
+import Wrapper from "./Wrapper";
+import {Redirect} from 'react-router-dom';
 
 const ProductsCreate = () => {
+  const [title, setTitle] = useState('');
+  const [image, setImage] = useState('');
+  const [redirect, setRedirect] = useState(false);
+
+  const submit = async (e: SyntheticEvent) => {
+    e.preventDefault();
+
+    await fetch('http://localhost:8000/api/products', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        title,
+        image
+      })
+    });
+    setRedirect(true);
+  }
+  if(redirect){
+    return <Redirect to={'/management/products'}/>
+  }
     return (
-        <nav className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-            <a className="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Company name</a>
-            <button className="navbar-toggler position-absolute d-md-none collapsed" type="button"
-                    data-toggle="collapse"
-                    data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-            </button>
-            <input className="form-control form-control-dark w-100" type="text" placeholder="Search"
-                   aria-label="Search"/>
-            <ul className="navbar-nav px-3">
-                <li className="nav-item text-nowrap">
-                    <a className="nav-link" href="#">Sign out</a>
-                </li>
-            </ul>
-        </nav>
+      <Wrapper>
+        <form onSubmit={submit}>
+                <div className="form-group">
+                    <label>Title</label>
+                    <input type="text" className="form-control" name="title"
+                           onChange={e => setTitle(e.target.value)}
+                    />
+                </div>
+                <div className="form-group">
+                    <label>Image</label>
+                    <input type="text" className="form-control" name="image"
+                           onChange={e => setImage(e.target.value)}
+                    />
+                </div>
+                <button className="btn btn-outline-secondary">Save</button>
+            </form>
+      </Wrapper>
+
     );
 };
 
