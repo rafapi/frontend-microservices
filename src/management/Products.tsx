@@ -12,10 +12,18 @@ const Products = () => {
         const data = await response.json();
         console.log(data);
         setProducts(data);
-    }
+      }
     )();
 
   }, []);
+
+  const del = async (id: number) => {
+    if(window.confirm("Are you sure you want to delete this product?"))
+    await fetch(`http://localhost:8000/api/products/${id}`, {
+      method: 'DELETE'
+    });
+    setProducts(products.filter((p: Product) => p.id !== id));
+  }
 
   return (
     <Wrapper>
@@ -33,20 +41,25 @@ const Products = () => {
           <tbody>
             {products.map(
               (p: Product) => {
-              return (
-                <tr key={p.id}>
-                  <td>{p.id}</td>
-                  <td><img src={p.image} height="180"/></td>
-                  <td>{p.title}</td>
-                  <td>{p.likes}</td>
-                  <td></td>
-                </tr>
-              )
+                return (
+                  <tr key={p.id}>
+                    <td>{p.id}</td>
+                    <td><img src={p.image} height="180"/></td>
+                    <td>{p.title}</td>
+                    <td>{p.likes}</td>
+                    <td>
+                      <div className="btn-group mr-2">
+                        <a href="#" className="btn btn-sm-outline-secondary"
+                          onClick={() => del(p.id)}>Delete</a>
+                      </div>
+                    </td>
+                  </tr>
+                )
             })}
           </tbody>
         </table>
       </div>
-      </Wrapper>
+    </Wrapper>
 
   );
 };
