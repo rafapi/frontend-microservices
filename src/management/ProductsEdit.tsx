@@ -1,6 +1,7 @@
 import React, {PropsWithRef, SyntheticEvent, useState, useEffect} from 'react';
 import Wrapper from "./Wrapper";
 import {Redirect} from 'react-router-dom';
+import {Product} from "../interfaces/product";
 
 const ProductsEdit = (props: PropsWithRef<any>) => {
   const [title, setTitle] = useState('');
@@ -11,7 +12,8 @@ const ProductsEdit = (props: PropsWithRef<any>) => {
     (
       async () => {
         const response = await fetch(`http://localhost:8000/api/products/${props.match.params.id}`)
-        const product = await response.json();
+        const product: Product = await response.json();
+
         setTitle(product.title);
         setImage(product.image)
       }
@@ -21,7 +23,7 @@ const ProductsEdit = (props: PropsWithRef<any>) => {
   const submit = async (e: SyntheticEvent) => {
     e.preventDefault();
 
-    await fetch(`http://localhost:8000/api/productsproducts/${props.match.params.id}`, {
+    await fetch(`http://localhost:8000/api/products/${props.match.params.id}`, {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
