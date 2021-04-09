@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
+import Users from "./users/Users";
 import Products from "./management/Products";
 import ProductsCreate from "./management/ProductsCreate";
 import ProductsEdit from "./management/ProductsEdit";
 import {BrowserRouter, Route} from "react-router-dom";
-import Users from "./users/Users";
 
 function App() {
   return (
