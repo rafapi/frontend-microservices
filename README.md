@@ -1,5 +1,7 @@
 # Frontend for [basic-microservices](https://github.com/rafapi/basic-microservices)
 
+> This repository has been prepared as a frontend for https://github.com/rafapi/backend-microservices
+
 ## Getting Started
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
