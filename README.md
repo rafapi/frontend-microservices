@@ -1,5 +1,10 @@
 # Frontend for [basic-microservices](https://github.com/rafapi/basic-microservices)
 
+<p align="left">
+     <img src="https://img.shields.io/github/license/rafapi/frontend-microservices">
+     <img src="https://img.shields.io/github/last-commit/rafapi/frontend-microservices">
+</p>
+
 > This repository has been prepared as a frontend for https://github.com/rafapi/backend-microservices
 
 ## Getting Started
